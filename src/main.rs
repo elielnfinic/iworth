@@ -12,11 +12,20 @@ async fn get_liabilities() -> impl Responder{
     
 }
 
-#[post("/liabitie")]
+#[post("/liabity/add")]
+async fn add_liabily() -> impl Responder{
 
-#[post("/getdebt")]
+}
 
-#[post("/debt")]
+#[get("/debts")]
+async fn get_debts() -> impl Responder{
+
+}
+
+#[post("/debt/add")]
+async fn add_debt -> impl Responder{
+
+}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()>{
@@ -25,6 +34,9 @@ async fn main() -> std::io::Result<()>{
     HttpServer::new(|| {
         App::new()
             .service(get_liabilities)
+            .service(add_liabily)
+            .service(get_debts)
+            .service(add_debt)
     })
     .bind(("0.0.0.0",8080))?
     .run()
