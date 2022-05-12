@@ -1,6 +1,8 @@
 #[macro_use]
 extern crate dotenv_codegen;
+
 mod routes;
+mod models;
 
 use actix_web::{get, post, web, App, HttpServer, Responder};
 use std::env;
@@ -9,6 +11,8 @@ use dotenv::dotenv;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()>{
+    models::db::connect();
+
     HttpServer::new(|| {
         App::new()
             .service(routes::liability::get_liabilities)
